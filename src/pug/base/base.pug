@@ -1,13 +1,27 @@
+include _variables.pug
+include _mixins.pug
+
+block localVariables
+  - let actual = 'Home' 
+
 doctype html
 html(lang="en")
   head
     meta(charset="utf-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0")
-    title Pug-Sass Starter
-    // Styles
-    link(href="./assets/css/styles.min.css", rel="stylesheet")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
+    title= actual + " - " + title
+    
+    // FontAwesome Icons
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css")
+    // Personal Styles
+    link(rel='stylesheet', href='css/styles.min.css')
   body
     block layout
+
     // Scripts
-    script(src="./assets/js/scripts.min.js")
+    script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js")
+    script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js")
+    script(src="js/scripts.min.js")

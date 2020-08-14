@@ -1,14 +1,15 @@
-var gulp    = require('gulp'),
-    sass    = require('gulp-sass'),
-    connect = require('gulp-connect'),
-    pug     = require('gulp-pug'),
-    plumber = require('gulp-plumber'),
-    rename  = require('gulp-rename'),
-    uglify  = require('gulp-uglify'),
-    autoprefixer = require('gulp-autoprefixer');
+let gulp = require('gulp'),
+  sass = require('gulp-sass'),
+  connect = require('gulp-connect'),
+  pug = require('gulp-pug'),
+  plumber = require('gulp-plumber'),
+  rename = require('gulp-rename'),
+  uglify = require('gulp-uglify-es').default,
+  autoprefixer = require('gulp-autoprefixer');
 
 function reload(done) {
   connect.server({
+    root: 'public',
     livereload: true,
     port: 8080
   });
@@ -17,18 +18,22 @@ function reload(done) {
 
 function styles() {
   return (
-    gulp.src('src/sass/styles.sass')
+    gulp.src('src/scss/styles.scss')
     .pipe(plumber())
     .pipe(sass())
     .pipe(autoprefixer({
       overrideBrowserslist: ['last 3 versions'],
       cascade: false
     }))
-    .pipe(sass({outputStyle: 'expanded'}))
-    .pipe(gulp.dest('assets/css'))
-    .pipe(sass({outputStyle: 'compressed'}))
+    .pipe(sass({
+      outputStyle: 'expanded'
+    }))
+    .pipe(gulp.dest('public/css'))
+    .pipe(sass({
+      outputStyle: 'compressed'
+    }))
     .pipe(rename('styles.min.css'))
-    .pipe(gulp.dest('assets/css'))
+    .pipe(gulp.dest('public/css'))
     .pipe(connect.reload())
   );
 }
@@ -37,10 +42,10 @@ function scripts() {
   return (
     gulp.src('src/js/scripts.js')
     .pipe(plumber())
-    .pipe(gulp.dest('assets/js'))
+    .pipe(gulp.dest('public/js'))
     .pipe(uglify())
     .pipe(rename('scripts.min.js'))
-    .pipe(gulp.dest('assets/js'))
+    .pipe(gulp.dest('public/js'))
     .pipe(connect.reload())
   );
 }
@@ -55,19 +60,19 @@ function html() {
 
 function views() {
   return (
-    gulp.src('src/pug/pages/*.pug')
+    gulp.src('src/pug/*.pug')
     .pipe(plumber())
     .pipe(pug({
-        pretty: true
+      pretty: true
     }))
-    .pipe(gulp.dest('./'))
+    .pipe(gulp.dest('public/'))
     .pipe(connect.reload())
   )
 }
 
 function watchTask(done) {
-  gulp.watch('*.html', html);
-  gulp.watch('src/sass/**/*.sass', styles);
+  gulp.watch('public/*.html', html);
+  gulp.watch('src/scss/**/*.scss', styles);
   gulp.watch('src/js/scripts.js', scripts);
   gulp.watch('src/pug/**/*.pug', views);
   done();

@@ -1,0 +1,13 @@
+nav#navbar.navbar.navbar-expand-md.navbar-dark.bg-primary.sticky-top
+  .container-fluid
+    a.navbar-brand(href='index.html') Navbar
+    
+    button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbar-menu')
+      span.navbar-toggler-icon
+
+    #navbar-menu.collapse.navbar-collapse
+      ul.navbar-nav.ml-auto
+        each opt in menuOptions
+          li.nav-item
+            a(class={active: opt.name === actual} href=opt.path).nav-link= opt.name
+

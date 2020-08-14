@@ -1,69 +1,74 @@
-# Pug-Sass Starter
+# Pug-Sass con nodejs y gulp
 
-A simple starter for building HTML templates using Pug and Sass.
+Esta es una plantilla tomada de [Github](https://github.com/sulistryono/pug-sass-starter) extendida con bootstrap 4.5 y Fontawesome 5.14
 
-## Requirements
+Usando Sass se puede personalizar los estilos de bootstrap, tal como en el archivo _variables.scss [Ver Más](https://getbootstrap.com/docs/4.5/getting-started/theming/)
 
-Make sure [Node JS](https://nodejs.org), [NPM](https://www.npmjs.com) and [Gulp](http://gulpjs.com/) already installed on your computer.
+## Requerimientos
 
-## Install
+Instalar [Node JS](https://nodejs.org) y [NPM](https://www.npmjs.com)
 
-* Navigate to the directory where the _pug-sass-starter_ folder is located using **Terminal**.
-* Execute `npm install`.
+## Modo de Uso
 
-## Run
+* Abrir la carpeta en VSCode
+* Abrir una nueva **Terminal**
+* Ejecutar "`npm install`".
 
-* Execute `npm start` or `gulp`.
-* Open `http://localhost:8080/` on your web browser.
+## Ejecutar
 
-## Build
+* Para comenzar a usar la plantilla ejecute "`npm start`".
+* Seguido abra `http://localhost:8080/` en su navegador.
+* Ya puede modificar sus archivos .pug, .scss y .js
 
-* Execute `gulp build`.
+## Desplegar
 
-## Folders Structure
+Este proyecto está configurado para desplegar la carpeta public en github pages
 
-```
-+ assets
-  + css : This folder contains prebuild files, styles.css and styles.min.css.
-  + fonts : Put your font files here, also do not forget to import it on _variables.scss.
-  + icons : Put your icon files here.
-  + images : Put your image files here.
-  + js : This folder contains prebuild files, scripts.js and scripts.min.js.
-+ src
+* Para asegurar la compilación de todos los archivo ejecute "`npm run build`".
+* Seguido ejecute `npm run deploy`.
+
+## Estructura de Carpetas
+
+```none
++ public: Contiene la versión final del proyecto
+  + css : Este folder contiene los archivos de css compilados de Sass
+  + fonts : Guarde aquí sus fuentes
+  + icons : Guarde aquí sus iconos
+  + images : Guarde aquí sus imagenes
+  + js : Este folder contiene los archivos de js compilados
+  - index.html : Archivos de html compilados de pug en la carpeta pages
+
++ src : Contiene el código editable del proyecto
   + js
-    - scripts.js : Put your js code here.
+    - scripts.js : Use este archivo para agregar código javascript
+  
   + pug
     + base
-      - base.pug : Base pug file.
-    + layouts
-      - default-layout.pug : Default layout pug file.
-    + pages
-      - index.pug : Example page pug file, it contains h1 only.
+      - _mixins.pug : Use este archivo para sus mixins
+      - _variables.pug : Use este archivo para sus variables globales;
+      - base.pug: Estructura general de cualquier archivo HTML
+    + layout
+      - default.pug : Archivo por defecto para el layout general de las páginas
     + partials
-      - footer.pug : Footer pug file.
-      - header.pug : Header pug file.
+      - _footer.pug : Archivo del Footer
+      - _header.pug : Archivo del Header
+      - _navbar.pug : Archivo del navbar
+    - index.pug : Página de inicio
   + sass
     + base
-      - _global.sass : Put your global styles here, such us html, body, section, headings, anchor etc.
-      - _mixins.sass : Put your mixins here;
-      - _placeholders.sass : Put your placeholders here;
-      - _variables.sass : Put your variables here;
+      - _global.sass : Use este archivo para Estilos globales, como html, body, etc.
+      - _mixins.sass : Use este archivo para sus mixins
+      - _placeholders.sass : Use este archivo para sus placeholders;
+      - _variables.sass : Use este archivo para sus variables;
+    + bootstrap: Esta carpeta contiene todos los archivos sass de bootstrap
     + components
-      - _components.sass : Put your components styles here, such as buttons, modals etc.
+      - _components.sass : Use este archivo para sus componentes, como botones, modals, etc;
     + layouts
-      - _footer.sass : Put your footer styles here.
-      - _header.sass : Put your header styles here.
+      - default.pug: Estilos particulares del layout por defecto
     + pages
-      - _index.sass : Example sass for specific page.
-    - styles.sass : Import all sass files.
-- index.html : Prebuild HTML file, other HTML files will be placed here too.
+      - _index.sass : Estilos particulares para la página principal
+    + partials
+      - _footer.sass : Estilos del footer
+      - _header.sass : Estilos del header
+    - styles.sass : Aquí se importan todos los archivos de Sass para ser compilado a css
 ```
-
-## Gulp Plugins
-
-* [gulp-connect](https://www.npmjs.com/package/gulp-connect) : Run webserver (with livereload).
-* [gulp-plumber](https://www.npmjs.com/package/gulp-plumber) : Prevent pipe breaking caused by errors from gulp plugins.
-* [gulp-pug](https://www.npmjs.com/package/gulp-pug) : Gulp plugin for compiling Pug templates, compile Pug into HTML.
-* [gulp-rename](https://www.npmjs.com/package/gulp-rename) : Gulp plugin to rename files easily, adding `.min` suffix.
-* [gulp-sass](https://www.npmjs.com/package/gulp-sass) : Compile your Sass into CSS.
-* [gulp-uglify](https://www.npmjs.com/package/gulp-uglify) : Minify your JS.
